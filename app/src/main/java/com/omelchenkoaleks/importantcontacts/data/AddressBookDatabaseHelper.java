@@ -16,7 +16,7 @@ class AddressBookDatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // creates the contacts table when the database is created
+    // создает таблицу контактов при создании базы данных
     @Override
     public void onCreate(SQLiteDatabase db) {
         // SQL for creating the contacts table
@@ -29,11 +29,12 @@ class AddressBookDatabaseHelper extends SQLiteOpenHelper {
                         DatabaseDescription.Contact.COLUMN_STREET + " TEXT, " +
                         DatabaseDescription.Contact.COLUMN_CITY + " TEXT, " +
                         DatabaseDescription.Contact.COLUMN_STATE + " TEXT, " +
-                        DatabaseDescription.Contact.COLUMN_ZIP + " TEXT);";
+                        DatabaseDescription.Contact.COLUMN_INDEX + " TEXT, " +
+                        DatabaseDescription.Contact.COLUMN_NOTES + " TEXT);";
         db.execSQL(CREATE_CONTACTS_TABLE); // create the contacts table
-    }
+}
 
-    // normally defines how to upgrade the database when the schema changes
+    // определяет, как обновить базу данных при изменении схемы
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion,
                           int newVersion) { }

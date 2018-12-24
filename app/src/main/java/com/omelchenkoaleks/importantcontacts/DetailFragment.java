@@ -44,7 +44,8 @@ public class DetailFragment extends Fragment
     private TextView streetTextView; // displays contact's street
     private TextView cityTextView; // displays contact's city
     private TextView stateTextView; // displays contact's state
-    private TextView zipTextView; // displays contact's zip
+    private TextView indexTextView; // displays contact's index
+    private TextView notesTextView; // displays contact's notes
 
     // set DetailFragmentListener when fragment attached
     @Override
@@ -79,13 +80,14 @@ public class DetailFragment extends Fragment
                 inflater.inflate(R.layout.fragment_detail, container, false);
 
         // get the EditTexts
-        nameTextView = (TextView) view.findViewById(R.id.nameTextView);
-        phoneTextView = (TextView) view.findViewById(R.id.phoneTextView);
-        emailTextView = (TextView) view.findViewById(R.id.emailTextView);
-        streetTextView = (TextView) view.findViewById(R.id.streetTextView);
-        cityTextView = (TextView) view.findViewById(R.id.cityTextView);
-        stateTextView = (TextView) view.findViewById(R.id.stateTextView);
-        zipTextView = (TextView) view.findViewById(R.id.zipTextView);
+        nameTextView = view.findViewById(R.id.nameTextView);
+        phoneTextView = view.findViewById(R.id.phoneTextView);
+        emailTextView = view.findViewById(R.id.emailTextView);
+        streetTextView = view.findViewById(R.id.streetTextView);
+        cityTextView = view.findViewById(R.id.cityTextView);
+        stateTextView = view.findViewById(R.id.stateTextView);
+        indexTextView = view.findViewById(R.id.indexTextView);
+        notesTextView = view.findViewById(R.id.notesTextView);
 
         // load the contact
         getLoaderManager().initLoader(CONTACT_LOADER, null, this);
@@ -190,7 +192,8 @@ public class DetailFragment extends Fragment
             int streetIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STREET);
             int cityIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_CITY);
             int stateIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STATE);
-            int zipIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_ZIP);
+            int indexIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_INDEX);
+            int notesIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_NOTES);
 
             // fill TextViews with the retrieved data
             nameTextView.setText(data.getString(nameIndex));
@@ -199,7 +202,8 @@ public class DetailFragment extends Fragment
             streetTextView.setText(data.getString(streetIndex));
             cityTextView.setText(data.getString(cityIndex));
             stateTextView.setText(data.getString(stateIndex));
-            zipTextView.setText(data.getString(zipIndex));
+            indexTextView.setText(data.getString(indexIndex));
+            notesTextView.setText(data.getString(notesIndex));
         }
     }
 

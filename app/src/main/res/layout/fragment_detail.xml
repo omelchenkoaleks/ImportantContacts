@@ -113,21 +113,38 @@
             android:layout_row="5"/>
 
         <TextView
-            android:id="@+id/zipLabelTextView"
+            android:id="@+id/indexLabelTextView"
             style="@style/ContactLabelTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="6"
-            android:text="@string/label_zip"/>
+            android:text="@string/label_index"/>
 
         <TextView
-            android:id="@+id/zipTextView"
+            android:id="@+id/indexTextView"
             style="@style/ContactTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_row="6"/>
+
+        <TextView
+            android:id="@+id/notesLabelTextView"
+            style="@style/ContactLabelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="7"
+            android:text="@string/label_notes"/>
+
+        <TextView
+            android:id="@+id/notesTextView"
+            style="@style/ContactTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="7"/>
     </GridLayout>
 
 </ScrollView>

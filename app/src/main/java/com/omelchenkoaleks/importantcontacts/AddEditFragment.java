@@ -46,7 +46,8 @@ public class AddEditFragment extends Fragment
     private TextInputLayout streetTextInputLayout;
     private TextInputLayout cityTextInputLayout;
     private TextInputLayout stateTextInputLayout;
-    private TextInputLayout zipTextInputLayout;
+    private TextInputLayout indexTextInputLayout;
+    private TextInputLayout notesTextInputLayout;
     private FloatingActionButton saveContactFAB;
 
     private CoordinatorLayout coordinatorLayout; // used with SnackBars
@@ -76,26 +77,18 @@ public class AddEditFragment extends Fragment
         // inflate GUI and get references to EditTexts
         View view =
                 inflater.inflate(R.layout.fragment_add_edit, container, false);
-        nameTextInputLayout =
-                (TextInputLayout) view.findViewById(R.id.nameTextInputLayout);
-        nameTextInputLayout.getEditText().addTextChangedListener(
-                nameChangedListener);
-        phoneTextInputLayout =
-                (TextInputLayout) view.findViewById(R.id.phoneTextInputLayout);
-        emailTextInputLayout =
-                (TextInputLayout) view.findViewById(R.id.emailTextInputLayout);
-        streetTextInputLayout =
-                (TextInputLayout) view.findViewById(R.id.streetTextInputLayout);
-        cityTextInputLayout =
-                (TextInputLayout) view.findViewById(R.id.cityTextInputLayout);
-        stateTextInputLayout =
-                (TextInputLayout) view.findViewById(R.id.stateTextInputLayout);
-        zipTextInputLayout =
-                (TextInputLayout) view.findViewById(R.id.zipTextInputLayout);
+        nameTextInputLayout = view.findViewById(R.id.nameTextInputLayout);
+        nameTextInputLayout.getEditText().addTextChangedListener(nameChangedListener);
+        phoneTextInputLayout = view.findViewById(R.id.phoneTextInputLayout);
+        emailTextInputLayout = view.findViewById(R.id.emailTextInputLayout);
+        streetTextInputLayout = view.findViewById(R.id.streetTextInputLayout);
+        cityTextInputLayout = view.findViewById(R.id.cityTextInputLayout);
+        stateTextInputLayout = view.findViewById(R.id.stateTextInputLayout);
+        indexTextInputLayout = view.findViewById(R.id.indexTextInputLayout);
+        notesTextInputLayout = view.findViewById(R.id.notesTextInputLayout);
 
         // set FloatingActionButton's event listener
-        saveContactFAB = (FloatingActionButton) view.findViewById(
-                R.id.saveFloatingActionButton);
+        saveContactFAB = view.findViewById(R.id.saveFloatingActionButton);
         saveContactFAB.setOnClickListener(saveContactButtonClicked);
         updateSaveButtonFAB();
 
@@ -176,8 +169,10 @@ public class AddEditFragment extends Fragment
                 cityTextInputLayout.getEditText().getText().toString());
         contentValues.put(DatabaseDescription.Contact.COLUMN_STATE,
                 stateTextInputLayout.getEditText().getText().toString());
-        contentValues.put(DatabaseDescription.Contact.COLUMN_ZIP,
-                zipTextInputLayout.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_INDEX,
+                indexTextInputLayout.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_NOTES,
+                notesTextInputLayout.getEditText().getText().toString());
 
         if (addingNewContact) {
             // use Activity's ContentResolver to invoke
@@ -243,23 +238,18 @@ public class AddEditFragment extends Fragment
             int streetIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STREET);
             int cityIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_CITY);
             int stateIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STATE);
-            int zipIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_ZIP);
+            int indexIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_INDEX);
+            int notesIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_NOTES);
 
             // fill EditTexts with the retrieved data
-            nameTextInputLayout.getEditText().setText(
-                    data.getString(nameIndex));
-            phoneTextInputLayout.getEditText().setText(
-                    data.getString(phoneIndex));
-            emailTextInputLayout.getEditText().setText(
-                    data.getString(emailIndex));
-            streetTextInputLayout.getEditText().setText(
-                    data.getString(streetIndex));
-            cityTextInputLayout.getEditText().setText(
-                    data.getString(cityIndex));
-            stateTextInputLayout.getEditText().setText(
-                    data.getString(stateIndex));
-            zipTextInputLayout.getEditText().setText(
-                    data.getString(zipIndex));
+            nameTextInputLayout.getEditText().setText(data.getString(nameIndex));
+            phoneTextInputLayout.getEditText().setText(data.getString(phoneIndex));
+            emailTextInputLayout.getEditText().setText(data.getString(emailIndex));
+            streetTextInputLayout.getEditText().setText(data.getString(streetIndex));
+            cityTextInputLayout.getEditText().setText(data.getString(cityIndex));
+            stateTextInputLayout.getEditText().setText(data.getString(stateIndex));
+            indexTextInputLayout.getEditText().setText(data.getString(indexIndex));
+            notesTextInputLayout.getEditText().setText(data.getString(notesIndex));
 
             updateSaveButtonFAB();
         }
