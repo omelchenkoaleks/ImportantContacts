@@ -31,7 +31,7 @@ public class DatabaseDescription {
         public static final String COLUMN_STREET = "street";
         public static final String COLUMN_CITY = "city";
         public static final String COLUMN_STATE = "state";
-        public static final String COLUMN_INDEX = "index";
+        public static final String COLUMN_INDEX = "code";
         public static final String COLUMN_NOTES = "notes";
 
         // создает Uri для конкретного контакта
