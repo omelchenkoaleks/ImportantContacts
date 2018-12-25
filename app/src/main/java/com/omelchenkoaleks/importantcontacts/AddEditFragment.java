@@ -45,8 +45,8 @@ public class AddEditFragment extends Fragment
     private TextInputLayout emailTextInputLayout;
     private TextInputLayout streetTextInputLayout;
     private TextInputLayout cityTextInputLayout;
-    private TextInputLayout stateTextInputLayout;
     private TextInputLayout indexTextInputLayout;
+    private TextInputLayout stateTextInputLayout;
     private TextInputLayout notesTextInputLayout;
     private FloatingActionButton saveContactFAB;
 
@@ -83,8 +83,8 @@ public class AddEditFragment extends Fragment
         emailTextInputLayout = view.findViewById(R.id.emailTextInputLayout);
         streetTextInputLayout = view.findViewById(R.id.streetTextInputLayout);
         cityTextInputLayout = view.findViewById(R.id.cityTextInputLayout);
-        stateTextInputLayout = view.findViewById(R.id.stateTextInputLayout);
         indexTextInputLayout = view.findViewById(R.id.indexTextInputLayout);
+        stateTextInputLayout = view.findViewById(R.id.stateTextInputLayout);
         notesTextInputLayout = view.findViewById(R.id.notesTextInputLayout);
 
         // set FloatingActionButton's event listener
@@ -167,10 +167,10 @@ public class AddEditFragment extends Fragment
                 streetTextInputLayout.getEditText().getText().toString());
         contentValues.put(DatabaseDescription.Contact.COLUMN_CITY,
                 cityTextInputLayout.getEditText().getText().toString());
-        contentValues.put(DatabaseDescription.Contact.COLUMN_STATE,
-                stateTextInputLayout.getEditText().getText().toString());
         contentValues.put(DatabaseDescription.Contact.COLUMN_INDEX,
                 indexTextInputLayout.getEditText().getText().toString());
+        contentValues.put(DatabaseDescription.Contact.COLUMN_STATE,
+                stateTextInputLayout.getEditText().getText().toString());
         contentValues.put(DatabaseDescription.Contact.COLUMN_NOTES,
                 notesTextInputLayout.getEditText().getText().toString());
 
@@ -237,8 +237,8 @@ public class AddEditFragment extends Fragment
             int emailIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_EMAIL);
             int streetIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STREET);
             int cityIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_CITY);
-            int stateIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STATE);
             int indexIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_INDEX);
+            int stateIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STATE);
             int notesIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_NOTES);
 
             // fill EditTexts with the retrieved data
@@ -247,8 +247,8 @@ public class AddEditFragment extends Fragment
             emailTextInputLayout.getEditText().setText(data.getString(emailIndex));
             streetTextInputLayout.getEditText().setText(data.getString(streetIndex));
             cityTextInputLayout.getEditText().setText(data.getString(cityIndex));
-            stateTextInputLayout.getEditText().setText(data.getString(stateIndex));
             indexTextInputLayout.getEditText().setText(data.getString(indexIndex));
+            stateTextInputLayout.getEditText().setText(data.getString(stateIndex));
             notesTextInputLayout.getEditText().setText(data.getString(notesIndex));
 
             updateSaveButtonFAB();

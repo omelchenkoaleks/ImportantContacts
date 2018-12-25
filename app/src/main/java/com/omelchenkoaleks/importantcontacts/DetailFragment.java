@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -33,6 +34,9 @@ public class DetailFragment extends Fragment
         void onEditContact(Uri contactUri);
     }
 
+    // переменная хранит номер телефона для быстрого набора
+    private static String phoneNumber;
+
     private static final int CONTACT_LOADER = 0; // identifies the Loader
 
     private DetailFragmentListener listener; // MainActivity
@@ -43,8 +47,8 @@ public class DetailFragment extends Fragment
     private TextView emailTextView; // displays contact's email
     private TextView streetTextView; // displays contact's street
     private TextView cityTextView; // displays contact's city
-    private TextView stateTextView; // displays contact's state
     private TextView indexTextView; // displays contact's index
+    private TextView stateTextView; // displays contact's state
     private TextView notesTextView; // displays contact's notes
 
     // set DetailFragmentListener when fragment attached
@@ -85,13 +89,30 @@ public class DetailFragment extends Fragment
         emailTextView = view.findViewById(R.id.emailTextView);
         streetTextView = view.findViewById(R.id.streetTextView);
         cityTextView = view.findViewById(R.id.cityTextView);
-        stateTextView = view.findViewById(R.id.stateTextView);
         indexTextView = view.findViewById(R.id.indexTextView);
+        stateTextView = view.findViewById(R.id.stateTextView);
         notesTextView = view.findViewById(R.id.notesTextView);
 
         // load the contact
         getLoaderManager().initLoader(CONTACT_LOADER, null, this);
+
+        // обрабатываем нажатие на кнопку телефон
+        phoneTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phoneNumber = phoneTextView.getText().toString();
+                dialContactPhone(phoneNumber);
+            }
+        });
+
         return view;
+    }
+
+    // звонок
+    private void dialContactPhone(final String phoneNumber) {
+        startActivity(new Intent(
+                Intent.ACTION_DIAL,
+                Uri.fromParts("tel", phoneNumber, null)));
     }
 
     // display this fragment's menu items
@@ -191,8 +212,8 @@ public class DetailFragment extends Fragment
             int emailIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_EMAIL);
             int streetIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STREET);
             int cityIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_CITY);
-            int stateIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STATE);
             int indexIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_INDEX);
+            int stateIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_STATE);
             int notesIndex = data.getColumnIndex(DatabaseDescription.Contact.COLUMN_NOTES);
 
             // fill TextViews with the retrieved data
@@ -201,8 +222,8 @@ public class DetailFragment extends Fragment
             emailTextView.setText(data.getString(emailIndex));
             streetTextView.setText(data.getString(streetIndex));
             cityTextView.setText(data.getString(cityIndex));
-            stateTextView.setText(data.getString(stateIndex));
             indexTextView.setText(data.getString(indexIndex));
+            stateTextView.setText(data.getString(stateIndex));
             notesTextView.setText(data.getString(notesIndex));
         }
     }

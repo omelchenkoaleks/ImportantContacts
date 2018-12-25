@@ -28,8 +28,8 @@ class AddressBookDatabaseHelper extends SQLiteOpenHelper {
                         DatabaseDescription.Contact.COLUMN_EMAIL + " TEXT, " +
                         DatabaseDescription.Contact.COLUMN_STREET + " TEXT, " +
                         DatabaseDescription.Contact.COLUMN_CITY + " TEXT, " +
-                        DatabaseDescription.Contact.COLUMN_STATE + " TEXT, " +
                         DatabaseDescription.Contact.COLUMN_INDEX + " TEXT, " +
+                        DatabaseDescription.Contact.COLUMN_STATE + " TEXT, " +
                         DatabaseDescription.Contact.COLUMN_NOTES + " TEXT);";
         db.execSQL(CREATE_CONTACTS_TABLE); // create the contacts table
 }
