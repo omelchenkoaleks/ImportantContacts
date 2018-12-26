@@ -36,6 +36,8 @@ public class DetailFragment extends Fragment
 
     // переменная хранит номер телефона для быстрого набора
     private static String phoneNumber;
+    // переменная хранит Email для быстрого сообщения
+    private static String mailingAddress;
 
     private static final int CONTACT_LOADER = 0; // identifies the Loader
 
@@ -105,7 +107,26 @@ public class DetailFragment extends Fragment
             }
         });
 
+        // обрабатываем нажатие на кнопку отправить Email
+        emailTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendEmail();
+            }
+        });
+
         return view;
+    }
+
+    // Email
+    private void sendEmail() {
+        String amail = emailTextView.getText().toString();
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { amail });
+        emailIntent.setType("message/rfc822");
+
+        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
     }
 
     // звонок
